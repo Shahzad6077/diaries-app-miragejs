@@ -1,0 +1,191 @@
+nav {
+  background-color: #f0f0f0;
+}
+nav ul {
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+nav ul li {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+nav ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
+  background: #d3d3d3;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #6b6b6b;
+}
+
+nav ul li a img {
+  max-width: 48px;
+  max-height: 48px;
+  margin-right: 0.5rem;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+nav ul li a.active {
+  background: transparent;
+  color: currentColor;
+}
+button {
+  cursor: pointer;
+  border: none;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+nav h1 {
+  text-align: center;
+  margin: 1rem;
+}
+/* ------------------- */
+.insert-diary-wrapper {
+  padding: 10px 1rem;
+  overflow: hidden;
+  border-bottom: 1px solid;
+}
+
+.insert-diary-wrapper form {
+  display: flex;
+  align-items: stretch;
+}
+.insert-diary-wrapper form > input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  font-family: inherit;
+  font-weight: bold;
+  padding: 0px 12px;
+  min-width: 200px;
+  width: 100%;
+}
+.insert-diary-wrapper form > input::placeholder {
+  color: #cac8c8;
+}
+
+.insert-diary-wrapper svg {
+  width: 32px;
+  height: 32px;
+}
+.insert-diary-wrapper span {
+  min-width: 6px;
+  background-color: var(--blue);
+}
+
+.insert-diary-wrapper button[type="submit"] {
+  padding: 4px;
+}
+.insert-diary-wrapper button[type="submit"] svg {
+  transform: rotate(45deg);
+}
+.insert-diary-wrapper button[type="submit"]:disabled .arrow-fa {
+  fill: #9c9b9b;
+}
+
+/* ------------------- */
+#history.active body:parent {
+  background-color: #333333;
+}
+
+/* HOME COMP SIDE SECTION */
+
+.entrySide,
+.diarySide {
+  padding: 0rem 0px 1rem 0px;
+  overflow: hidden;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.diarySide {
+  flex-basis: 30%;
+}
+.diarySide ul,
+.entrySide ul {
+  list-style: none;
+}
+/* EACH ITEM IN UL */
+.diaryItem {
+  height: 40px;
+}
+.diaryItem a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0px 6px;
+}
+.diaryItem span.dot {
+  min-width: 12px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--blue);
+  border-radius: 50%;
+  margin-right: 4px;
+}
+.diaryItem span.arrow-h {
+  width: 26px;
+  height: 26px;
+  background-color: var(--blue);
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  display: none;
+}
+.diaryItem p {
+  padding: 0px 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.diaryActiveItem {
+  background-color: #f3f3f3;
+}
+.diaryActiveItem span.arrow-h {
+  display: flex;
+}
+.diaryItem span > svg {
+  width: 60%;
+  height: 60%;
+}
+/* ENTRY Side */
+.entrySide {
+  flex-basis: 70%;
+}
+
+/* Media query  */
+@media (min-width: 375px) {
+  /*  */
+}
+@media (min-width: 768px) {
+  nav {
+    overflow: hidden;
+    border-radius: 30px 30px 0 0;
+  }
+  nav ul li a {
+    padding: 15px;
+    font-size: 0.875rem;
+  }
+
+  .insert-diary-wrapper {
+    padding: 14px 2.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  /*  */
+}
