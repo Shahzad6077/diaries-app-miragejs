@@ -10,7 +10,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomeView />}>
-            <Route path=":diaryId" element={<EntrySide />} />
+            <Route path="entry/:diaryId" element={<EntrySide />} />
           </Route>
         </Routes>
       </main>

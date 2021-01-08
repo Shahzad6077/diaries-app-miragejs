@@ -1,0 +1,49 @@
+.deleteShowerComp {
+  display: inline-flex;
+  position: relative;
+}
+.confirmationWrapper {
+  position: absolute;
+  width: 220px;
+  height: auto;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: var(--shaddow);
+  border-radius: 6px;
+  top: 40px;
+  z-index: 100;
+  right: 0;
+}
+.confirmationWrapper p {
+  font-size: 14px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+}
+.actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.actions button {
+  width: auto;
+  padding: 0px 6px;
+  height: 30px;
+}
+
+.delwrap {
+  min-width: 26px;
+  max-width: 26px;
+  height: 26px;
+  background-color: var(--red);
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  display: flex;
+  cursor: pointer;
+}
+
+.delwrap > svg {
+  width: 60%;
+  height: 60%;
+}

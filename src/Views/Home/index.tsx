@@ -6,11 +6,11 @@ import { Outlet, useMatch } from "react-router-dom";
 type Props = {};
 
 const HomeView: FC<Props> = () => {
-  const isDiarySelected = useMatch("/:diaryId");
+  const isDiarySelected = useMatch("entry/:diaryId");
   console.log(!!isDiarySelected);
   return (
     <div className="homeView">
-      <DiarySide />
+      <DiarySide isDiaryNotSelected={!!!isDiarySelected} />
       <Outlet />
       {!isDiarySelected && (
         <div className="diarySlectorView">

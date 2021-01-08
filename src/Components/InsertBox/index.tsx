@@ -11,12 +11,12 @@ const INITIAL_STATE = {
   loading: false,
 };
 type Props = {
-  name: string;
+  placeholder: string;
   validation?: (text: string) => string | undefined;
   onSubmitData: (data: string) => string | undefined;
 };
 
-const InsertBox: FC<Props> = ({ name, validation, onSubmitData }) => {
+const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
   const [txt, setTxt] = useState<string>("");
   const [state, setCompState] = useState<CompState>(INITIAL_STATE);
   const setState = (obj: Omit<CompState, "error" | "loading">) => {
@@ -56,13 +56,15 @@ const InsertBox: FC<Props> = ({ name, validation, onSubmitData }) => {
           type="text"
           value={txt}
           onChange={onChangeTxt}
-          placeholder={`Enter ${name}.`}
+          placeholder={placeholder}
         />
-        <button type="submit">
+        <button type="submit" disabled={txt.length === 0}>
           <SubmitIcon />
         </button>
       </form>
-      <div style={{ height: "1rem", padding: "0px 1.2rem" }}>
+      <div
+        style={{ height: "1rem", padding: "0px 1.2rem", color: "var(--red)" }}
+      >
         {state.error && <p>{state.error}</p>}
       </div>
     </div>

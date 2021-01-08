@@ -3,8 +3,15 @@
   --lightblack: #222326;
   --darkgray: #3b3d45;
   --gray: ##f3f3f3;
+  --red: #e83160;
   --blue: #0099ff;
   --lightBlue: #66b9ff;
+
+  --bg: #f3f3f3;
+  --bg-light: #f5f5f5;
+
+  --shaddow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 *,
 ::after,
@@ -92,9 +99,11 @@ input[type="number"] {
 .homeView h4 {
   text-align: center;
   position: sticky;
-  background-color: rgba(0, 0, 0, 0.041);
+  background-color: #f5f5f5;
   padding: 00.5rem 0px;
-  margin-bottom: 2px;
+  margin-bottom: 0.5rem;
+  top: 0;
+  z-index: 1;
 }
 .diarySlectorView {
   flex-grow: 1;
@@ -151,10 +160,10 @@ input[type="number"] {
 ::-moz-selection {
   /* Code for Firefox */
   color: white;
-  background: var(--yellow);
+  background: var(--darkgray);
 }
 
 ::selection {
   color: white;
-  background: var(--yellow);
+  background: var(--darkgray);
 }

@@ -1,23 +1,21 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
-import { ReactComponent as ArrowIcon } from "./../../Assets/arrow-alt.svg";
+import { DeleteActionBtn } from "./../../Utils";
 type Props = {
-  diaryId: string;
+  entryId: string;
   txt: string;
 };
 
-const DiaryItem: FC<Props> = ({ diaryId, txt }) => {
+const EntryItem: FC<Props> = ({ entryId, txt }) => {
+  const onDeleteEntry = () => {
+    console.log("deleted");
+  };
   return (
-    <li className="diaryItem">
-      <NavLink to={diaryId} activeClassName="diaryActiveItem">
-        <span className="dot" />
-        <p>{txt}</p>
-        <span className="arrow-h">
-          <ArrowIcon />
-        </span>
-      </NavLink>
+    <li className="entryItem">
+      <span className="dot" />
+      <p>{txt}</p>
+      <DeleteActionBtn onClick={onDeleteEntry} style={{ marginLeft: "auto" }} />
     </li>
   );
 };
 
-export default DiaryItem;
+export default EntryItem;

@@ -50,9 +50,9 @@ nav h1 {
 }
 /* ------------------- */
 .insert-diary-wrapper {
-  padding: 10px 1rem;
+  padding: 10px 0.5rem;
   overflow: hidden;
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
 }
 
 .insert-diary-wrapper form {
@@ -67,7 +67,7 @@ nav h1 {
   font-family: inherit;
   font-weight: bold;
   padding: 0px 12px;
-  min-width: 200px;
+  min-width: 20px;
   width: 100%;
 }
 .insert-diary-wrapper form > input::placeholder {
@@ -85,6 +85,7 @@ nav h1 {
 
 .insert-diary-wrapper button[type="submit"] {
   padding: 4px;
+  background-color: transparent;
 }
 .insert-diary-wrapper button[type="submit"] svg {
   transform: rotate(45deg);
@@ -103,13 +104,15 @@ nav h1 {
 .entrySide,
 .diarySide {
   padding: 0rem 0px 1rem 0px;
-  overflow: hidden;
-  overflow-y: scroll;
+
   position: relative;
 }
 
 .diarySide {
-  flex-basis: 30%;
+  flex-basis: 40%;
+}
+.diarySide .insert-diary-wrapper {
+  padding: 8px;
 }
 .diarySide ul,
 .entrySide ul {
@@ -118,6 +121,7 @@ nav h1 {
 /* EACH ITEM IN UL */
 .diaryItem {
   height: 40px;
+  /* display: flex; */
 }
 .diaryItem a {
   text-decoration: none;
@@ -165,6 +169,27 @@ nav h1 {
 /* ENTRY Side */
 .entrySide {
   flex-basis: 70%;
+  flex-grow: 1;
+}
+.entrySide ul {
+  padding: 0px 1rem;
+}
+.entrySide ul > * + * {
+  margin-top: 12px;
+}
+.entryItem {
+  background-color: var(--bg-light);
+  display: flex;
+  padding: 6px 8px;
+}
+.entryItem span.dot {
+  min-width: 12px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--darkgray);
+  border-radius: 50%;
+  margin-right: 6px;
+  margin-top: 5px;
 }
 
 /* Media query  */
@@ -182,7 +207,31 @@ nav h1 {
   }
 
   .insert-diary-wrapper {
-    padding: 14px 2.5rem;
+    padding: 8px 1rem;
+  }
+  .entrySide,
+  .diarySide {
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 768px) {
+  .diarySide {
+    display: none;
+  }
+  .diarySide-drawer {
+    display: unset;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border: 0;
+    background-color: white;
+    z-index: 26;
+  }
+  .diarySide-drawer h4 {
+    top: unset;
   }
 }
 
