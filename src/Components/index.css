@@ -99,6 +99,16 @@ nav h1 {
   background-color: #333333;
 }
 
+span.dot {
+  min-width: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 4px;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
 /* HOME COMP SIDE SECTION */
 
 .entrySide,
@@ -120,7 +130,7 @@ nav h1 {
 }
 /* EACH ITEM IN UL */
 .diaryItem {
-  height: 40px;
+  /* height: 40px; */
   /* display: flex; */
 }
 .diaryItem a {
@@ -129,16 +139,11 @@ nav h1 {
   font-weight: 500;
   display: flex;
   height: 100%;
-  align-items: center;
-  padding: 0px 6px;
+  padding: 6px;
+  align-items: flex-start;
 }
 .diaryItem span.dot {
-  min-width: 12px;
-  width: 12px;
-  height: 12px;
   background-color: var(--blue);
-  border-radius: 50%;
-  margin-right: 4px;
 }
 .diaryItem span.arrow-h {
   width: 26px;
@@ -181,17 +186,29 @@ nav h1 {
   background-color: var(--bg-light);
   display: flex;
   padding: 6px 8px;
+  align-items: flex-start;
 }
 .entryItem span.dot {
-  min-width: 12px;
-  width: 12px;
-  height: 12px;
   background-color: var(--darkgray);
-  border-radius: 50%;
-  margin-right: 6px;
-  margin-top: 5px;
 }
 
+.content {
+  flex-grow: 1;
+  background-color: transparent;
+}
+.content span {
+  /* width: 18px; */
+  height: 18px;
+  display: inline-flex;
+  margin-top: 6px;
+  color: #a5a5a5;
+  align-items: center;
+}
+.content span > svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
 /* Media query  */
 @media (min-width: 375px) {
   /*  */

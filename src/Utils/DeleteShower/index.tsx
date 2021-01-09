@@ -1,9 +1,11 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useRef } from "react";
 
 import classes from "./deleteshower.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import Spinner from "../Spinner";
 import { ReactComponent as DeleteIcon } from "./../../Assets/times.svg";
+import useOutsideClick from "./../../Hooks/useOutsideClick";
+
 type Props = {
   onClick: () => void;
   title?: string;
@@ -18,6 +20,7 @@ const DeleteShower: FC<Props> = ({
   children,
   style,
 }) => {
+  const rootRef = useRef<HTMLDivElement | any>();
   const [showConfirmationWrapper, setShowConfirmationWrapper] = useState(false);
   const [loading, setLoading] = useState(false);
   const varientAnim = {
@@ -55,15 +58,17 @@ const DeleteShower: FC<Props> = ({
     setShowConfirmationWrapper((_p) => !_p);
   };
   const wrapperClassName = `${classes.deleteShowerComp} ${className}`;
-  const bbb = Math.random() * 2344;
+  useOutsideClick(rootRef, (e: any) => {
+    setShowConfirmationWrapper(false);
+  });
   return (
-    <div className={wrapperClassName} style={style}>
-      <button onClick={showToggler}>
+    <div ref={rootRef} className={wrapperClassName} style={style}>
+      <button onClick={showToggler} style={{ background: "transparent" }}>
         <span className={classes.delwrap}>
           <DeleteIcon />
         </span>
       </button>
-      <AnimatePresence key={bbb} presenceAffectsLayout>
+      <AnimatePresence>
         {showConfirmationWrapper && (
           <motion.div
             className={classes.confirmationWrapper}

@@ -6,7 +6,11 @@ type Props = {
 
 const ARR = Array(15)
   .fill(0)
-  .map((_, i) => ({ diaryId: `dd-${i}`, txt: "Success Stories" }));
+  .map((_, i) => ({
+    diaryId: `dd-${i}`,
+    txt: "Success Stories",
+    createdDate: `0${i + 1} Aug`,
+  }));
 const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
   const submitHandler = (txt: string) => {
     console.log("Field Data-->", txt);
@@ -22,7 +26,12 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
       <InsertBox placeholder="Insert Diary" onSubmitData={submitHandler} />
       <ul>
         {ARR.map((obj) => (
-          <DiaryItem key={obj.diaryId} diaryId={obj.diaryId} txt={obj.txt} />
+          <DiaryItem
+            key={obj.diaryId}
+            diaryId={obj.diaryId}
+            txt={obj.txt}
+            createdDate={obj.createdDate}
+          />
         ))}
       </ul>
     </div>

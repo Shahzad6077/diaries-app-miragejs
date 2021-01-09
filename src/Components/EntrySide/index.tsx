@@ -7,6 +7,7 @@ const ARR = Array(15)
   .map((_, i) => ({
     entryId: `dd-${i}`,
     txt: "Entry description should be here",
+    createdDate: `0${i + 1} Aug`,
   }));
 const EntrySide: FC<Props> = () => {
   const submitHandler = (txt: string) => {
@@ -19,7 +20,12 @@ const EntrySide: FC<Props> = () => {
       <InsertBox placeholder="Insert note" onSubmitData={submitHandler} />
       <ul>
         {ARR.map((obj) => (
-          <EntryItem key={obj.entryId} entryId={obj.entryId} txt={obj.txt} />
+          <EntryItem
+            key={obj.entryId}
+            entryId={obj.entryId}
+            txt={obj.txt}
+            createdDate={obj.createdDate}
+          />
         ))}
       </ul>
     </div>
