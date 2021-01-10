@@ -10,8 +10,8 @@ const diarySlice = createSlice({
   name: "diaires-slice",
   initialState,
   reducers: {
-    addDiary(state, action: PayloadAction<Omit<Diary, "id">>) {
-      const { note, date } = action.payload;
+    addDiary(state, action: PayloadAction<Diary>) {
+      const { createdAt, txt, user } = action.payload;
     },
     removeDiary: (state, action: PayloadAction<string>) => {},
     clearDiaries: (state, action: PayloadAction) => {

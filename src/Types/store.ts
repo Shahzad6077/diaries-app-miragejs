@@ -1,31 +1,29 @@
-// export interface ColorPlatte {
-//   colorId: number;
-//   primary: string;
-//   secondary: string;
-// }
-// export interface ProductItem {
-//   id: string;
-//   imageUrl: string[];
-//   title: string;
-//   description: string;
-//   colors: ColorPlatte[];
-//   price: number;
-// }
-// export const DEFAULT_PRODUCT_ITEM: ProductItem = {
-//   id: "",
-//   imageUrl: [],
-//   title: "",
-//   description: "",
-//   colors: [],
-//   price: 0,
-// };
-
+export interface User {
+  id?: string | undefined;
+  email: string | number;
+  password?: string;
+  createdAt: number;
+}
+export interface Note {
+  id?: string | number;
+  txt: string;
+  createdAt: number;
+  user?: User | string;
+}
 export interface Diary {
-  id: string;
-  note: string;
-  date: string;
+  id?: string | number;
+  txt: string;
+  createdAt: string;
+  user?: User | string;
+  note?: Note | string;
 }
 
 export interface DiariesSliceState {
   diaries: Diary[];
+}
+
+export interface AuthState {
+  token: string;
+  user: User;
+  isAuthenticated: boolean;
 }
