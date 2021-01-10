@@ -3,12 +3,15 @@ import classes from "./styles.module.css";
 import { DiarySide } from "./../../Components";
 import { Outlet, useMatch } from "react-router-dom";
 import { Spinner } from "./../../Utils";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store/rootReducer";
 
-type Props = {
-  isAuthenticated: boolean;
-};
+type Props = {};
 
-const HomeView: FC<Props> = ({ isAuthenticated }) => {
+const HomeView: FC<Props> = () => {
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.authReducer.isAuthenticated
+  );
   const isDiarySelected = useMatch("entry/:diaryId");
   if (!isAuthenticated) {
     return <Spinner style={{ background: "#ccc" }} />;

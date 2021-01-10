@@ -2,11 +2,12 @@ import React, { FC, useState } from "react";
 import dayjs from "dayjs";
 import { AuthState } from "./../../Types/store";
 import { Link } from "react-router-dom";
-type Props = {
-  onSetAuth: (res: AuthState) => void;
-};
+import { useAppDispatch } from "../../Store/store";
+import { onAuthSet } from "../../Store/Slices/auth";
+type Props = {};
 
-const SignupComp: FC<Props> = ({ onSetAuth }) => {
+const SignupComp: FC<Props> = () => {
+  const dispatch = useAppDispatch();
   const [state, setObjState] = useState({
     email: "",
     password: "",
@@ -34,7 +35,7 @@ const SignupComp: FC<Props> = ({ onSetAuth }) => {
       .then((s) => s.json())
       .then((res) => {
         if (res.token) {
-          onSetAuth({ ...res, isAuthenticated: true });
+          dispatch(onAuthSet({ ...res, isAuthenticated: true }));
         }
       })
       .catch((e) => {

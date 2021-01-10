@@ -23,7 +23,7 @@ export interface DiariesSliceState {
 }
 
 export interface AuthState {
-  token: string;
-  user: User;
+  token?: string;
+  user?: User;
   isAuthenticated: boolean;
 }
