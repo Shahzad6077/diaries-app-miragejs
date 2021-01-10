@@ -12,7 +12,7 @@ export interface ConfigureServer {
 }
 
 export interface AuthResponse {
-  user: User;
+  user: Partial<User>;
   token: string;
 }
 export interface RegisterUserRequest {

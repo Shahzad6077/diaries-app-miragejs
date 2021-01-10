@@ -7,6 +7,7 @@ import {
 import { AppSchema } from "./SchemaModels";
 import { generateToken } from "../Helpers";
 import { handleErrorResponse } from "./Common/ErrorResponse";
+import { Diary } from "../Types/store";
 
 class MirageController {
   userSession: AuthResponse | null = null;
@@ -19,7 +20,6 @@ class MirageController {
     schema: AppSchema,
     request: Request
   ): Response | AuthResponse => {
-    console.log("register user");
     let { user }: RegisterUserRequest = JSON.parse(request.requestBody);
     console.log(user);
     const createdUser = schema.create("user", user);
@@ -27,22 +27,17 @@ class MirageController {
     const res = {
       token,
       user: {
-        email: createdUser.email,
-        id: createdUser.id,
-        createdAt: createdUser.createdAt,
+        ...createdUser.attrs,
+        password: undefined,
       },
     };
-    this.userSession = res;
     window.localStorage.setItem("userSession", JSON.stringify(res));
     return res;
   };
   // Login the user
-  loginUser = (
-    schema: AppSchema,
-    request: Request
-  ): Response | AuthResponse => {
-    console.log("userSession", this.userSession);
+  loginUser = (schema: any, request: Request): Response | AuthResponse => {
     let { email, password }: LoginUserRequest = JSON.parse(request.requestBody);
+    console.log("userSession", this.userSession, email, password);
     const existingUser = schema.findBy("user", { email });
     if (!existingUser) {
       return handleErrorResponse(null, "User not found");
@@ -76,5 +71,47 @@ class MirageController {
       return { ...JSON.parse(getSession), isAuthenticated: true };
     }
   };
+  // CRUD for Diary
+  getAllUserDiaries = (schema: AppSchema, request: Request): Response | any => {
+    const userId = request.params.userId;
+    const user = schema.find("user", userId);
+    console.log(user);
+    if (user) {
+      return { data: user.diary.models as Diary[] };
+    } else {
+      return handleErrorResponse(
+        new Error("user not exist"),
+        "Invalid User Id"
+      );
+    }
+  };
+  deleteUserDiary = (schema: any, request: Request): Response | any => {
+    const userId = request.params.userId;
+    const id = request.params.diaryId;
+
+    const docRef = schema.diaries.findBy({ id, userId });
+    if (docRef) {
+      docRef.destroy();
+      return { message: "Diary Deleted Successfully.", success: true };
+    } else {
+      return handleErrorResponse(
+        new Error("You're not Authorized."),
+        "You're not Authorized."
+      );
+    }
+  };
+  // getAllDiaryNotes = (schema: AppSchema, request: Request): Response | any => {
+  //   const userId = request.params.userId;
+  //   const user = schema.find("user", userId);
+  //   console.log(user);
+  //   if (user) {
+  //     return { data: user.diary.models as Diary[] };
+  //   } else {
+  //     return handleErrorResponse(
+  //       new Error("user not exist"),
+  //       "Invalid User Id"
+  //     );
+  //   }
+  // };
 }
 export default MirageController;

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Router } from "react-router-dom";
 import { Navbar, EntrySide } from "./Components";
 import { HomeView, LoginView, SignupView } from "./Views";
 import { AuthState } from "./Types/store";
@@ -7,6 +7,7 @@ import { useAppDispatch } from "./Store/store";
 import { RootState } from "./Store/rootReducer";
 import { useSelector } from "react-redux";
 import { logout, onAuthSet } from "./Store/Slices/auth";
+import Test from "./Test";
 
 function App() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <Test />
       <Navbar onLogout={onLogout} />
       <main>
         <Routes>

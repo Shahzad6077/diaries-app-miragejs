@@ -82,7 +82,18 @@ const DeleteShower: FC<Props> = ({
               <Spinner style={{ backgroundColor: "var(--gray-light2)" }} />
             ) : (
               <div className={classes.actions}>
-                <button onClick={onConfirmClickHandler}>Confirm</button>
+                <button
+                  onClick={(
+                    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
+                  ) => {
+                    console.log("asd");
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onConfirmClickHandler();
+                  }}
+                >
+                  Confirm
+                </button>
                 <button onClick={showToggler}>Cancel</button>
               </div>
             )}

@@ -11,13 +11,14 @@ import { ModelDefinition } from "miragejs/-types";
 // TYPES
 import { Diary, Note, User } from "./../Types/store";
 
-const UserModel: ModelDefinition<User> = Model.extend({
+export const UserModel = Model.extend({
   diary: hasMany(),
 });
-const DiaryModel: ModelDefinition<Diary> = Model.extend({
+export const DiaryModel = Model.extend({
   note: hasMany(),
+  user: belongsTo(),
 });
-const NoteModel: ModelDefinition<Note> = Model.extend({
+export const NoteModel = Model.extend({
   diary: belongsTo(),
 });
 

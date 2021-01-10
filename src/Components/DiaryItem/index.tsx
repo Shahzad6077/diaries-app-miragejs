@@ -4,16 +4,16 @@ import { ReactComponent as ArrowIcon } from "./../../Assets/arrow-alt.svg";
 import { ReactComponent as CalendarIcon } from "./../../Assets/calendar.svg";
 import { motion } from "framer-motion";
 import { DeleteActionBtn } from "./../../Utils";
+import dayjs from "dayjs";
+
 type Props = {
   diaryId: string;
   txt: string;
-  createdDate: string;
+  createdAt: string;
+  onDelete: (id: string) => void;
 };
 
-const DiaryItem: FC<Props> = ({ diaryId, txt, createdDate }) => {
-  const onDeleteEntry = () => {
-    console.log("deleted");
-  };
+const DiaryItem: FC<Props> = ({ diaryId, txt, createdAt, onDelete }) => {
   return (
     <motion.li
       // drag="x"
@@ -26,14 +26,16 @@ const DiaryItem: FC<Props> = ({ diaryId, txt, createdDate }) => {
         <div className="content">
           <p>{txt}</p>
           <span>
-            <CalendarIcon /> {createdDate}
+            <CalendarIcon /> {dayjs(createdAt).format("DD MMM")}
           </span>
         </div>
         <span className="arrow-h">
           <ArrowIcon />
         </span>
         <DeleteActionBtn
-          onClick={onDeleteEntry}
+          onClick={() => {
+            onDelete(diaryId);
+          }}
           style={{ marginLeft: "auto" }}
         />
       </NavLink>

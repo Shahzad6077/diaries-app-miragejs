@@ -8,14 +8,13 @@ export interface Note {
   id?: string | number;
   txt: string;
   createdAt: number;
-  user?: User | string;
+  userId?: string;
 }
 export interface Diary {
-  id?: string | number;
+  id: string;
   txt: string;
   createdAt: string;
-  user?: User | string;
-  note?: Note | string;
+  userId?: string;
 }
 
 export interface DiariesSliceState {

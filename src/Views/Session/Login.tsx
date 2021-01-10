@@ -24,10 +24,8 @@ const Index: FC<Props> = () => {
       method: "POST",
 
       body: JSON.stringify({
-        user: {
-          email: state.email,
-          password: state.password,
-        },
+        email: state.email,
+        password: state.password,
       }),
     })
       .then((s) => s.json())
