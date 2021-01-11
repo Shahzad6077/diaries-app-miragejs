@@ -152,12 +152,10 @@ span.dot {
   align-items: center;
   margin-left: auto;
   display: none;
+  margin-right: 4px;
 }
 .item p {
   padding: 0px 1px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .diaryActiveItem {
   background-color: #f3f3f3;

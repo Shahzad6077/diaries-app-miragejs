@@ -23,7 +23,7 @@ const ListItem: FC<Props> = ({ docId, txt, createdAt, onDelete, varient }) => {
     <Fragment>
       <span className={`dot ${dotColor}`} />
       <div className="content">
-        <p>{txt}</p>
+        <p className={`  ${varient === "DIARY" && "ellipse-txt"}`}>{txt}</p>
         <span>
           <CalendarIcon /> {dayjs(createdAt).fromNow()}
         </span>

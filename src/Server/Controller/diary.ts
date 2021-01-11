@@ -25,7 +25,6 @@ class DiaryController {
   getAllUserDiaries = (schema: AppSchema, request: Request): Response | any => {
     const userId = request.params.userId;
     const user = schema.find("user", userId);
-    console.log(user);
     if (user) {
       return { data: user.diary.models as Diary[] };
     } else {

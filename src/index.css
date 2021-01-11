@@ -156,6 +156,11 @@ input[type="number"] {
   text-align: center;
   font-weight: 500;
 }
+.ellipse-txt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media (min-width: 768px) {
   #root {
     min-height: 100vh;

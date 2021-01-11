@@ -100,6 +100,7 @@ const EntrySide: FC<Props> = () => {
           <Spinner />
         )}
       </ul>
+      {notes?.length === 0 && <p className="empty-tag">Empty</p>}
     </div>
   );
 };

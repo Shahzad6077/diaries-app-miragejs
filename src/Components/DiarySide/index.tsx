@@ -13,7 +13,7 @@ type Props = {
 
 const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
   const userId = useSelector((state: RootState) => state.authReducer.user?.id);
-  const [diaries, setDiaries] = useState<Diary[] | null>(null);
+  const [diaries, setDiaries] = useState<Diary[] | null | undefined>(undefined);
 
   useEffect(() => {
     getDiaries();
@@ -68,6 +68,7 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
       console.log(err);
     }
   };
+  console.log(typeof diaries === "undefined");
   return (
     <div
       className={`diarySide scrollp ${
@@ -83,8 +84,8 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
       <AnimateSharedLayout>
         <motion.ul layout>
           {diaries ? (
-            diaries.map((obj) => (
-              <AnimatePresence key={obj.id} initial={false} exitBeforeEnter>
+            <AnimatePresence>
+              {diaries.map((obj) => (
                 <ListItem
                   key={obj.id}
                   docId={obj.id}
@@ -93,14 +94,16 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
                   onDelete={onDeleteDiary}
                   varient="DIARY"
                 />
-              </AnimatePresence>
-            ))
+              ))}
+            </AnimatePresence>
           ) : (
             <Spinner />
           )}
         </motion.ul>
       </AnimateSharedLayout>
-      {diaries?.length === 0 && <p className="empty-tag">Empty</p>}
+      {typeof diaries !== "undefined" && diaries?.length === 0 && (
+        <p className="empty-tag">Empty</p>
+      )}
     </div>
   );
 };
