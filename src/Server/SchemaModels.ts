@@ -20,6 +20,7 @@ export const DiaryModel = Model.extend({
 });
 export const NoteModel = Model.extend({
   diary: belongsTo(),
+  user: belongsTo(),
 });
 
 type AppRegistry = Registry<

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Spinner } from "./Utils";
+import { Spinner, Dot3Spinner } from "./Utils";
 const Test = () => {
   useEffect(() => {
     // ----------------
@@ -17,6 +17,7 @@ const Test = () => {
   return (
     <div>
       <Spinner />
+      <Dot3Spinner />
       <button onClick={get}>getttt</button>
     </div>
   );

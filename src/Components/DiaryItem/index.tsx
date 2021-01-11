@@ -5,7 +5,9 @@ import { ReactComponent as CalendarIcon } from "./../../Assets/calendar.svg";
 import { motion } from "framer-motion";
 import { DeleteActionBtn } from "./../../Utils";
 import dayjs from "dayjs";
-
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+// format("DD MMM")
 type Props = {
   diaryId: string;
   txt: string;
@@ -15,18 +17,17 @@ type Props = {
 
 const DiaryItem: FC<Props> = ({ diaryId, txt, createdAt, onDelete }) => {
   return (
-    <motion.li
-      // drag="x"
-      // onDragEnd={(event, info) => console.log(info.point.x <= 0)}
-      // dragConstraints={{ left: 0, right: 0 }}
-      className="diaryItem"
-    >
-      <NavLink end to={`entry/${diaryId}`} activeClassName="diaryActiveItem">
+    <motion.li layout exit={{ opacity: 0, x: "-100" }} className="diaryItem">
+      <NavLink
+        end
+        to={`entry/${diaryId}/${txt}`}
+        activeClassName="diaryActiveItem"
+      >
         <span className="dot" />
         <div className="content">
           <p>{txt}</p>
           <span>
-            <CalendarIcon /> {dayjs(createdAt).format("DD MMM")}
+            <CalendarIcon /> {dayjs(createdAt).fromNow()}
           </span>
         </div>
         <span className="arrow-h">

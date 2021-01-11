@@ -5,7 +5,7 @@ export interface User {
   createdAt: number;
 }
 export interface Note {
-  id?: string | number;
+  id: string;
   txt: string;
   createdAt: number;
   userId?: string;

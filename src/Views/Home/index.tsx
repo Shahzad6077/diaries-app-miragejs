@@ -12,7 +12,7 @@ const HomeView: FC<Props> = () => {
   const isAuthenticated = useSelector(
     (state: RootState) => state.authReducer.isAuthenticated
   );
-  const isDiarySelected = useMatch("entry/:diaryId");
+  const isDiarySelected = useMatch("entry/:diaryId/:diaryName");
   if (!isAuthenticated) {
     return <Spinner style={{ background: "#ccc" }} />;
   }

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { ReactComponent as SubmitIcon } from "./../../Assets/add.svg";
-import { ReactComponent as DiaryIcon } from "./../../Assets/stream.svg";
+import { Dot3Spinner } from "./../../Utils";
 
 interface CompState {
   error: string | null;
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 type Props = {
   placeholder: string;
   validation?: (text: string) => string | undefined;
-  onSubmitData: (data: string) => string | undefined;
+  onSubmitData: (data: string) => Promise<string | undefined>;
 };
 
 const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
@@ -27,7 +27,7 @@ const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
     setTxt(value);
     setState({ error: null });
   };
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     setState({ loading: true });
     if (txt.length === 0) {
@@ -39,12 +39,13 @@ const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
       setState({ error: checkValidation, loading: false });
       return;
     } else {
-      const response = onSubmitData(txt);
+      const response = await onSubmitData(txt);
       if (typeof response !== "undefined") {
         setState({ error: response, loading: false });
         return;
       } else {
         setTxt("");
+        setState({ loading: false });
       }
     }
   };
@@ -57,9 +58,10 @@ const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
           value={txt}
           onChange={onChangeTxt}
           placeholder={placeholder}
+          readOnly={state.loading}
         />
         <button type="submit" disabled={txt.length === 0}>
-          <SubmitIcon />
+          {state.loading ? <Dot3Spinner /> : <SubmitIcon />}
         </button>
       </form>
       <div

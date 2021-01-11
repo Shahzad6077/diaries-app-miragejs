@@ -127,11 +127,12 @@ span.dot {
 .diarySide ul,
 .entrySide ul {
   list-style: none;
+  /* display: flex; */
+  /* flex-direction: column-reverse; */
 }
 /* EACH ITEM IN UL */
 .diaryItem {
-  /* height: 40px; */
-  /* display: flex; */
+  background-color: white;
 }
 .diaryItem a {
   text-decoration: none;

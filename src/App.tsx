@@ -28,7 +28,6 @@ function App() {
   }, []);
   useEffect(() => {
     if (authReducerState?.isAuthenticated) {
-      console.log("if part");
       navigate("/");
     } else {
       navigate("/login");
@@ -49,12 +48,12 @@ function App() {
 
   return (
     <div className="App">
-      <Test />
+      {/* <Test /> */}
       <Navbar onLogout={onLogout} />
       <main>
         <Routes>
           <Route path="/" element={<HomeView />}>
-            <Route path="entry/:diaryId" element={<EntrySide />} />
+            <Route path="entry/:diaryId/:diaryName" element={<EntrySide />} />
           </Route>
 
           <Route path="login" element={<LoginView />} />

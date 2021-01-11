@@ -44,7 +44,8 @@ body {
     rgba(255, 255, 255, 1) 100%
   );
 
-  background: #e2e8f0;
+  /* background: #e2e8f0; */
+  background: var(--darkgray);
 }
 
 body:contains-selector(#history.active) {

@@ -22,3 +22,8 @@ export interface LoginUserRequest {
   email: string;
   password: string;
 }
+
+export interface SuccessResponse {
+  success: boolean;
+  message: string;
+}
