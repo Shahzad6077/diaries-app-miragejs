@@ -14,9 +14,15 @@ type Props = {
   placeholder: string;
   validation?: (text: string) => string | undefined;
   onSubmitData: (data: string) => Promise<string | undefined>;
+  color: "blue" | "black";
 };
 
-const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
+const InsertBox: FC<Props> = ({
+  placeholder,
+  validation,
+  onSubmitData,
+  color,
+}) => {
   const [txt, setTxt] = useState<string>("");
   const [state, setCompState] = useState<CompState>(INITIAL_STATE);
   const setState = (obj: Omit<CompState, "error" | "loading">) => {
@@ -52,7 +58,7 @@ const InsertBox: FC<Props> = ({ placeholder, validation, onSubmitData }) => {
   return (
     <div className="insert-diary-wrapper">
       <form onSubmit={submitHandler}>
-        <span>{/* <DiaryIcon /> */}</span>
+        <span className={`${color}-dot`} />
         <input
           type="text"
           value={txt}

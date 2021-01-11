@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { EntryItem, InsertBox } from "..";
+import { toast } from "react-toastify";
+import { ListItem, InsertBox } from "..";
 import { RootState } from "../../Store/rootReducer";
 import { Note } from "../../Types/store";
 import { Spinner } from "../../Utils";
@@ -15,7 +16,7 @@ const EntrySide: FC<Props> = () => {
   const [loading, setLoading] = useState(false);
 
   const diaryId = params.diaryId;
-  const diaryName = params.diaryName;
+  const diaryName = `${params.diaryName}`.split("+").join(" ");
 
   useEffect(() => {
     setLoading(true);
@@ -52,6 +53,7 @@ const EntrySide: FC<Props> = () => {
       const res = await jsonRes.json();
       if (res.success) {
         await getNotes(diaryId);
+        toast.dark(`🚀 ${res.message}`);
         return undefined;
       } else {
         return res.message;
@@ -68,6 +70,7 @@ const EntrySide: FC<Props> = () => {
       const res = await jsonRes.json();
       if (res.success) {
         await getNotes(diaryId);
+        toast.dark(`🚀 ${res.message}`);
       }
     } catch (err) {
       console.log(err);
@@ -76,13 +79,18 @@ const EntrySide: FC<Props> = () => {
   return (
     <div className="entrySide scrollp">
       <h4>{diaryName}</h4>
-      <InsertBox placeholder="Insert note" onSubmitData={submitHandler} />
+      <InsertBox
+        placeholder="Insert note"
+        onSubmitData={submitHandler}
+        color="black"
+      />
       <ul>
         {notes && !loading ? (
           notes.map((obj) => (
-            <EntryItem
+            <ListItem
               key={obj.id}
-              entryId={obj.id}
+              varient="NOTE"
+              docId={obj.id}
               txt={obj.txt}
               createdAt={obj.createdAt}
               onDelete={onDeleteNote}

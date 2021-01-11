@@ -1,10 +1,12 @@
 import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { DiaryItem, InsertBox } from "..";
+import { ListItem, InsertBox } from "..";
 import { RootState } from "../../Store/rootReducer";
 import { Diary } from "../../Types/store";
 import { Spinner } from "../../Utils";
 import { AnimatePresence, motion, AnimateSharedLayout } from "framer-motion";
+
+import { toast } from "react-toastify";
 type Props = {
   isDiaryNotSelected: boolean;
 };
@@ -43,6 +45,7 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
       const res = await jsonRes.json();
       if (res.success) {
         await getDiaries();
+        toast.dark(`🚀 ${res.message}`);
         return undefined;
       } else {
         return res.message;
@@ -59,6 +62,7 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
       const res = await jsonRes.json();
       if (res.success) {
         getDiaries();
+        toast.dark(`🚀 ${res.message}`);
       }
     } catch (err) {
       console.log(err);
@@ -71,18 +75,23 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
       }`}
     >
       <h4>ADD DIARY</h4>{" "}
-      <InsertBox placeholder="Insert Diary" onSubmitData={submitHandler} />
+      <InsertBox
+        placeholder="Insert Diary"
+        onSubmitData={submitHandler}
+        color="blue"
+      />
       <AnimateSharedLayout>
         <motion.ul layout>
           {diaries ? (
             diaries.map((obj) => (
               <AnimatePresence key={obj.id} initial={false} exitBeforeEnter>
-                <DiaryItem
+                <ListItem
                   key={obj.id}
-                  diaryId={obj.id}
+                  docId={obj.id}
                   txt={obj.txt}
                   createdAt={obj.createdAt}
                   onDelete={onDeleteDiary}
+                  varient="DIARY"
                 />
               </AnimatePresence>
             ))
@@ -91,6 +100,7 @@ const DiarySide: FC<Props> = ({ isDiaryNotSelected }) => {
           )}
         </motion.ul>
       </AnimateSharedLayout>
+      {diaries?.length === 0 && <p className="empty-tag">Empty</p>}
     </div>
   );
 };

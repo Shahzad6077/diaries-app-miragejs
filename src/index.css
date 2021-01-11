@@ -150,6 +150,12 @@ input[type="number"] {
   text-transform: uppercase;
   font-family: "Quicksand";
 }
+
+.empty-tag {
+  margin: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
 @media (min-width: 768px) {
   #root {
     min-height: 100vh;

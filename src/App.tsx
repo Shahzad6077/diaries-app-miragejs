@@ -53,7 +53,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomeView />}>
-            <Route path="entry/:diaryId/:diaryName" element={<EntrySide />} />
+            <Route path="note/:diaryId/:diaryName" element={<EntrySide />} />
           </Route>
 
           <Route path="login" element={<LoginView />} />

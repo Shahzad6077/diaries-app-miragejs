@@ -37,14 +37,15 @@ class NoteController {
       );
     }
   };
-  deleteUserDiary = (schema: any, request: Request): Response | any => {
+  deleteDiaryNote = (schema: any, request: Request): Response | any => {
     const userId = request.params.userId;
-    const id = request.params.diaryId;
+    const diaryId = request.params.diaryId;
+    const id = request.params.noteId;
 
-    const docRef = schema.diaries.findBy({ id, userId });
+    const docRef = schema.notes.findBy({ id, diaryId, userId });
     if (docRef) {
       docRef.destroy();
-      return { message: "Diary Deleted Successfully.", success: true };
+      return { message: "Note Deleted Successfully.", success: true };
     } else {
       return handleErrorResponse(
         new Error("You're not Authorized."),

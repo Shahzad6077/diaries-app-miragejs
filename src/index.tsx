@@ -8,6 +8,9 @@ import { Provider } from "react-redux";
 import store from "./Store/store";
 import { BrowserRouter as Router } from "react-router-dom";
 import makeMirageServer from "./Server";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 makeMirageServer({ environment: "DEV" });
 ReactDOM.render(
@@ -15,6 +18,17 @@ ReactDOM.render(
     <Router>
       <Provider store={store}>
         <App />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Provider>
     </Router>
   </React.StrictMode>,

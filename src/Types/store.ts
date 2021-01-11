@@ -13,7 +13,7 @@ export interface Note {
 export interface Diary {
   id: string;
   txt: string;
-  createdAt: string;
+  createdAt: number;
   userId?: string;
 }
 

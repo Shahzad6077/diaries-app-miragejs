@@ -82,8 +82,8 @@ export default function ({ environment }: ConfigureServer) {
       );
       this.post("/api/notes/:userId/:diaryId", noteController.createNote);
       this.delete(
-        "/api/notes/:userId/:diaryId",
-        diaryController.deleteUserDiary
+        "/api/notes/:userId/:diaryId/:noteId",
+        noteController.deleteDiaryNote
       );
     },
     seeds(server: any) {

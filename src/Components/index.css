@@ -80,7 +80,6 @@ nav h1 {
 }
 .insert-diary-wrapper span {
   min-width: 6px;
-  background-color: var(--blue);
 }
 
 .insert-diary-wrapper button[type="submit"] {
@@ -131,10 +130,11 @@ span.dot {
   /* flex-direction: column-reverse; */
 }
 /* EACH ITEM IN UL */
-.diaryItem {
+
+.item {
   background-color: white;
 }
-.diaryItem a {
+.item a {
   text-decoration: none;
   color: #333333;
   font-weight: 500;
@@ -143,10 +143,7 @@ span.dot {
   padding: 6px;
   align-items: flex-start;
 }
-.diaryItem span.dot {
-  background-color: var(--blue);
-}
-.diaryItem span.arrow-h {
+.item span.arrow-h {
   width: 26px;
   height: 26px;
   background-color: var(--blue);
@@ -156,7 +153,7 @@ span.dot {
   margin-left: auto;
   display: none;
 }
-.diaryItem p {
+.item p {
   padding: 0px 1px;
   white-space: nowrap;
   overflow: hidden;
@@ -168,7 +165,7 @@ span.dot {
 .diaryActiveItem span.arrow-h {
   display: flex;
 }
-.diaryItem span > svg {
+.item span > svg {
   width: 60%;
   height: 60%;
 }
@@ -183,13 +180,20 @@ span.dot {
 .entrySide ul > * + * {
   margin-top: 12px;
 }
-.entryItem {
+
+.entrySide .item {
   background-color: var(--bg-light);
+}
+.item-wo-link {
   display: flex;
   padding: 6px 8px;
   align-items: flex-start;
 }
-.entryItem span.dot {
+
+.blue-dot {
+  background-color: var(--blue);
+}
+.black-dot {
   background-color: var(--darkgray);
 }
 
